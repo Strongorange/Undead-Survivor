@@ -7,14 +7,19 @@ public class EnemyController : MonoBehaviour
     public Rigidbody2D target;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    Animator anim;
+    public RuntimeAnimatorController[] animCon;
     public float speed;
-    bool isLive = true;
+    public float health;
+    public float maxHealth;
+    bool isLive;
 
     // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -42,5 +47,15 @@ public class EnemyController : MonoBehaviour
     void OnEnable()
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
+        isLive = true;
+        health = maxHealth;
+    }
+
+    public void Init(SpawnData data)
+    {
+        anim.runtimeAnimatorController = animCon[data.spriteType];
+        speed = data.speed;
+        maxHealth = data.health;
+        health = maxHealth;
     }
 }

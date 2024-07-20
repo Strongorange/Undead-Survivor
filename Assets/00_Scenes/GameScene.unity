@@ -4529,6 +4529,55 @@ Transform:
   m_Father: {fileID: 1206647313}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &514854713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 514854714}
+  - component: {fileID: 514854715}
+  m_Layer: 0
+  m_Name: Weapon 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &514854714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514854713}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1199268187}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &514854715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514854713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 254de30fd9abb482e96c555841f4f502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1
+  prefabId: 2
+  damage: 3
+  count: 1
+  speed: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,6 +5245,7 @@ Transform:
   - {fileID: 580874402}
   - {fileID: 1206647313}
   - {fileID: 793738509}
+  - {fileID: 514854714}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5248,8 +5298,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ceb65a367bf4c22b8b88eae88df132, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputVec: {x: 0, y: 0}
   speed: 5
+  inputVec: {x: 0, y: 0}
+  scanner: {fileID: 0}
 --- !u!114 &1199268191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9703,6 +9754,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 4626119225278819610, guid: 4f5764162d26e4187958f3112073d822, type: 3}
   - {fileID: 6593053745527842671, guid: 64058cf7a31134400a24fc8171ec7047, type: 3}
+  - {fileID: 1567176650530884457, guid: 27176bbe6af014b04b530351ff4f8014, type: 3}
 --- !u!1 &1786224701
 GameObject:
   m_ObjectHideFlags: 0

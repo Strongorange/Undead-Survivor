@@ -5,17 +5,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public float speed;
+    public Vector2 inputVec;
+    public Scanner scanner;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
-    public Vector2 inputVec;
-    public float speed;
 
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        scanner = GetComponent<Scanner>();
     }
 
     void FixedUpdate()

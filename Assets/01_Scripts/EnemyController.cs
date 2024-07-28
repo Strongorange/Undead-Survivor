@@ -70,7 +70,7 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Bullet"))
+        if (!other.CompareTag("Bullet") || !isLive)
         {
             return;
         }
@@ -91,7 +91,9 @@ public class EnemyController : MonoBehaviour
             rigid.simulated = false; // 리지드바디 물리적 비활성화
             spriteRenderer.sortingOrder = 1; // 시체가 다른 오브젝트 가리지 않게 하기
             anim.SetBool("Dead", true);
-            // Dead();
+
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp();
         }
     }
 

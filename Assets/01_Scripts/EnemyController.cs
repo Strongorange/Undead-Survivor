@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
+    WaitForFixedUpdate wait;
+
     public RuntimeAnimatorController[] animCon;
     public float speed;
     public float health;
@@ -20,11 +22,12 @@ public class EnemyController : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        wait = new WaitForFixedUpdate();
     }
 
     void FixedUpdate()
     {
-        if (!isLive)
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return;
         }
@@ -67,16 +70,26 @@ public class EnemyController : MonoBehaviour
         }
 
         health -= other.GetComponent<Bullet>().damage;
+        StartCoroutine(KnockBack());
 
         if (health > 0)
         {
             // .. Live, Hit Action
+            anim.SetTrigger("Hit");
         }
         else
         {
             // .. Die
             Dead();
         }
+    }
+
+    IEnumerator KnockBack()
+    {
+        yield return wait; // 하나의 물리 프레임 딜레이
+        Vector3 playerPos = GameManager.instance.player.transform.position;
+        Vector3 dirVec = transform.position - playerPos;
+        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse);
     }
 
     void Dead()

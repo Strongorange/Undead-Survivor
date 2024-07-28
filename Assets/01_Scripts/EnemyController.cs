@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public Rigidbody2D target;
     Rigidbody2D rigid;
+    Collider2D coll;
     SpriteRenderer spriteRenderer;
     Animator anim;
     WaitForFixedUpdate wait;
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>(); // 어떤 콜라이더든 가져와진다.
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         wait = new WaitForFixedUpdate();
@@ -51,6 +53,10 @@ public class EnemyController : MonoBehaviour
     {
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
         isLive = true;
+        coll.enabled = true; // 콜라이더 활성화
+        rigid.simulated = true; // 리지드바디 물리적 활성화
+        spriteRenderer.sortingOrder = 2; // 시체가 다른 오브젝트 가리지 않게 하 다시 바꾸기
+        anim.SetBool("Dead", false);
         health = maxHealth;
     }
 
@@ -80,7 +86,12 @@ public class EnemyController : MonoBehaviour
         else
         {
             // .. Die
-            Dead();
+            isLive = false;
+            coll.enabled = false; // 콜라이더 비활성화
+            rigid.simulated = false; // 리지드바디 물리적 비활성화
+            spriteRenderer.sortingOrder = 1; // 시체가 다른 오브젝트 가리지 않게 하기
+            anim.SetBool("Dead", true);
+            // Dead();
         }
     }
 

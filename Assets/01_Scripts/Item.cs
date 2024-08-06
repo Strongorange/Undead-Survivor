@@ -32,6 +32,22 @@ public class Item : MonoBehaviour
         {
             case ItemData.ItemType.Melee:
             case ItemData.ItemType.Range:
+                if (level == 0)
+                {
+                    GameObject newWeapon = new GameObject();
+                    weapon = newWeapon.AddComponent<Weapon>();
+                    weapon.Init(data);
+                }
+                else
+                {
+                    float nextDamage = data.baseDamage;
+                    int nextCoount = 0;
+
+                    nextDamage += data.baseDamage * data.damages[level];
+                    nextCoount += data.counts[level];
+
+                    weapon.LevelUp(nextDamage, nextCoount);
+                }
                 break;
             case ItemData.ItemType.Glove:
                 break;

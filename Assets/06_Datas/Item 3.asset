@@ -26,4 +26,4 @@ MonoBehaviour:
   - 0.4
   - 0.5
   counts: 0000000000000000000000000000000000000000
-  projectile: {fileID: 6593053745527842671, guid: 64058cf7a31134400a24fc8171ec7047, type: 3}
+  projectile: {fileID: 0}

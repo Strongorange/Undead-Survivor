@@ -37,7 +37,7 @@ public class HUD : MonoBehaviour
                 myText.text = string.Format("Lv.{0:F0}", GameManager.instance.level); // 이 부분 공부
                 break;
             case InfoType.Kill:
-                Debug.Log(GameManager.instance.kill);
+                // Debug.Log(GameManager.instance.kill);
                 myText.text = string.Format("{0:F0}", GameManager.instance.kill); // 이 부분 공부
                 break;
             case InfoType.Time:

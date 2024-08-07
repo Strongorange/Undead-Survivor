@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public Vector2 inputVec;
     public Scanner scanner;
+    public Hand[] hands;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -18,6 +19,8 @@ public class PlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
+        // 기본적으로 GetComponents는 비활성화된 오브젝트는 가져오지 않는다. 하지만 true를 넘겨주면 비활성화 된 게임 오브젝트도 가져온다!.
+        hands = GetComponentsInChildren<Hand>(true);
     }
 
     void FixedUpdate()

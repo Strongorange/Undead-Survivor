@@ -91,6 +91,11 @@ public class Weapon : MonoBehaviour
                 speed = 0.3f;
                 break;
         }
+        // Hand Set
+        // 근거리는 int 형변환시 0, 0은 왼쪽 손을 의미
+        Hand hand = player.hands[(int)data.itemType];
+        hand.spriter.sprite = data.hand;
+        hand.gameObject.SetActive(true);
 
         // TODO : 공부
         player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance; // 정적으로 사용하겠다는 키워드. 바로 메모리에 얹어버림.
 
     [Header("# Game Control")]
+    public bool isLive;
     public float gameTime;
     public float maxGameTime = 2 * 10f;
 
@@ -38,6 +39,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!isLive)
+        {
+            return;
+        }
+
         gameTime += Time.deltaTime;
 
         if (gameTime > maxGameTime)
@@ -55,5 +61,17 @@ public class GameManager : MonoBehaviour
             exp = 0;
             uiLevelUp.Show();
         }
+    }
+
+    public void Stop()
+    {
+        isLive = false;
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        isLive = true;
+        Time.timeScale = 1;
     }
 }

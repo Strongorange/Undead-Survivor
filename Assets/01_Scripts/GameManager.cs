@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+
+        // 임시 스크립트
+        uiLevelUp.Select(0);
     }
 
     void Update()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,14 +16,15 @@ public class GameManager : MonoBehaviour
     public int level;
     public int kill;
     public int exp;
-    public int maxHealth = 100;
-    public int health;
+    public float maxHealth = 100;
+    public float health;
     public int[] nextExp = { 10, 30, 60, 100, 150, 210, 280, 360, 450, 600 };
 
     [Header("# Game Object")]
     public PoolManager pool;
     public PlayerController player;
     public LevelUp uiLevelUp;
+    public GameObject uiResult;
 
     void Awake()
     {
@@ -35,6 +37,26 @@ public class GameManager : MonoBehaviour
         // 임시 스크립트
         uiLevelUp.Select(0);
         isLive = true;
+    }
+
+    public void GameOver()
+    {
+        StartCoroutine(GameOverRoutine());
+    }
+
+    IEnumerator GameOverRoutine()
+    {
+        isLive = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        uiResult.SetActive(true);
+        Stop();
+    }
+
+    public void GameRetry()
+    {
+        SceneManager.LoadScene(0); // Scene의 인덱스 0
     }
 
     void Update()

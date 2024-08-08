@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     [Header("# Game Object")]
     public PoolManager pool;
     public PlayerController player;
+    public LevelUp uiLevelUp;
 
     void Awake()
     {
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
         {
             level++;
             exp = 0;
+            uiLevelUp.Show();
         }
     }
 }

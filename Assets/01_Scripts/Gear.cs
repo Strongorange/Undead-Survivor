@@ -58,10 +58,12 @@ public class Gear : MonoBehaviour
             {
                 case 0: // 근접 무기
                     Debug.Log("근접 찾음!!!");
-                    weapon.speed = 150 + (150 * rate);
+                    float speed = 150 * Character.WeaponSpeed;
+                    weapon.speed = speed + (speed * rate);
                     break;
                 default: // 원거리 무기
-                    weapon.speed = 0.5f * (1f - rate); // 이 값이 작아지면 원거리 무기의 연사 속도가 빨라진다.
+                    speed = 0.5f * Character.WeaponRate;
+                    weapon.speed = speed * (1f - rate); // 이 값이 작아지면 원거리 무기의 연사 속도가 빨라진다.
                     break;
             }
         }
@@ -70,7 +72,7 @@ public class Gear : MonoBehaviour
     void SpeedUp()
     {
         Debug.Log("신발 속도 상승!");
-        float speed = 5; // 플레이어 기본 이동 속도;
+        float speed = 5 * Character.Speed; // 플레이어 기본 이동 속도;
         GameManager.instance.player.speed = speed + speed * rate;
     }
 }

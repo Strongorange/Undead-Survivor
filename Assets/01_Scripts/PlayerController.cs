@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 inputVec;
     public Scanner scanner;
     public Hand[] hands;
+    public RuntimeAnimatorController[] animCon;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -29,6 +30,12 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
+    }
+
+    void OnEnable()
+    {
+        speed *= Character.Speed;
+        anim.runtimeAnimatorController = animCon[GameManager.instance.playerId];
     }
 
     void FixedUpdate()

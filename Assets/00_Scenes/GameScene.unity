@@ -9572,7 +9572,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1199268186
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9700,6 +9700,8 @@ MonoBehaviour:
   hands: []
   animCon:
   - {fileID: 9100000, guid: dd21bd47e2f474451b4ccf3b2a762249, type: 2}
+  - {fileID: 22100000, guid: 50e4f8fa0755d4bf6bbb97b9269936ef, type: 2}
+  - {fileID: 22100000, guid: 69d25c6ed65f1432fb806ea6ca5d085d, type: 2}
   - {fileID: 22100000, guid: a8f8828437f05469887d3c4d99b2a3d5, type: 2}
 --- !u!114 &1199268191
 MonoBehaviour:

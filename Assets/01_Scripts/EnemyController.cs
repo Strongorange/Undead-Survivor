@@ -87,6 +87,7 @@ public class EnemyController : MonoBehaviour
         {
             // .. Live, Hit Action
             anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
         }
         else
         {
@@ -99,6 +100,11 @@ public class EnemyController : MonoBehaviour
 
             GameManager.instance.kill++;
             GameManager.instance.GetExp();
+
+            if (GameManager.instance.isLive)
+            {
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+            }
         }
     }
 

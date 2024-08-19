@@ -77,6 +77,9 @@ public class AudioManager : MonoBehaviour
             }
             sfxPlayers[loopIndex].clip = this.sfxClips[(int)sfx + ranIndex];
             sfxPlayers[loopIndex].Play();
+
+            // 다음 사용할 채널로 이동
+            this.channelIndex = (loopIndex + 1) % sfxPlayers.Length;
             break;
         }
         ;

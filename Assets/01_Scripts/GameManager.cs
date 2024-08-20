@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public int exp;
     public float maxHealth = 100;
     public float health;
-    public int[] nextExp = { 10, 30, 60, 100, 150, 210, 280, 360, 450, 600 };
+    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
 
     [Header("# Game Object")]
     public PoolManager pool;

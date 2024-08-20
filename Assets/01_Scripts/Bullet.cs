@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
         this.damage = damage;
         this.per = per;
 
-        if (per > -1) // per = -1 은 근접무기를 의미
+        if (per >= 0) // 음수 값은 근접 무기를 의미, 양수면 원거리 무기를 의미
         {
             rigid.velocity = dir * 15; // 날아가는 속도 결정
         }
@@ -27,14 +27,14 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.CompareTag("Enemy") || per == -1)
+        if (!other.CompareTag("Enemy") || per == -100)
         {
             return;
         }
 
         per--;
 
-        if (per == -1)
+        if (per < 0)
         {
             rigid.velocity = Vector2.zero; // 나중에 다시 true 되었을때를 대비해서 미리 속도를 0으로
             gameObject.SetActive(false);

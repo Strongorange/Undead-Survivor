@@ -20,16 +20,26 @@ public class RepositionController : MonoBehaviour
 
         Vector3 playerPos = GameManager.instance.player.transform.position;
         Vector3 myPos = transform.position;
-        float diffX = Mathf.Abs(playerPos.x - myPos.x);
-        float diffY = Mathf.Abs(playerPos.y - myPos.y);
 
-        Vector3 playerDir = GameManager.instance.player.inputVec;
-        float dirX = playerDir.x < 0 ? -1 : 1;
-        float dirY = playerDir.y < 0 ? -1 : 1;
+        // 2024-08-20 아래 로직은 문제가 있어 사용하지 않음
+        // Vector3 playerDir = GameManager.instance.player.inputVec;
+
+
 
         switch (transform.tag)
         {
             case "Ground":
+                // 기존 Player Input Vector 값을 기준으로 맵의 이동 방향을 결정하던 로직에 문제가 있어
+                // 플레이어와 맵의 거리 차이로 맵의 이동 방향 설정
+                float diffX = playerPos.x - myPos.x;
+                float diffY = playerPos.y - myPos.y;
+
+                float dirX = diffX < 0 ? -1 : 1;
+                float dirY = diffY < 0 ? -1 : 1;
+
+                diffX = Mathf.Abs(diffX);
+                diffY = Mathf.Abs(diffY);
+
                 if (diffX > diffY)
                 {
                     transform.Translate(Vector3.right * dirX * 40);
@@ -42,10 +52,10 @@ public class RepositionController : MonoBehaviour
             case "Enemy":
                 if (coll.enabled)
                 {
-                    transform.Translate(
-                        playerDir * 20
-                            + new Vector3(Random.Range(-3f, 3f), Random.Range(-3f, 3f), 0)
-                    );
+                    Vector3 dist = playerPos - myPos;
+                    Vector3 ran = new Vector3(Random.Range(-3, 3), Random.Range(-3, 3), 0);
+
+                    transform.Translate(ran + dist * 2);
                 }
                 break;
         }

@@ -40,4 +40,14 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (!other.CompareTag("Area") || per == -100)
+        {
+            return;
+        }
+
+        gameObject.SetActive(false);
+    }
 }
